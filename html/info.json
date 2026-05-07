@@ -1,0 +1,43 @@
+[
+    {
+        "id": "001",
+        "file": "index.html",
+        "title": "Top Page",
+        "next": [
+            {
+                "id": "002",
+                "file": "about.html",
+                "title": "About Page"
+            },
+            {
+                "id": "003",
+                "file": "contact.html",
+                "title": "Contact Page"
+            }
+        ],
+        "back": null
+    },
+    {
+        "id": "002",
+        "file": "about.html",
+        "title": "About Page",
+        "next": [
+        ],
+        "back": {
+            "file": "index.html",
+            "title": "Top Page"
+        }
+    },
+    {
+        "id": "003",
+        "file": "contact.html",
+        "title": "Contact Page",
+        "next": [
+        ],
+        "back": {
+            "file": "index.html",
+            "title": "Top Page"
+        }
+    }
+
+]

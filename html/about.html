@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <h1></h1>
+    <div id="next"></div>
+    <script>
+        fetch('info.json')
+            .then(response => response.json())
+            .then(datas => {
+                console.log(datas);
+                
+                const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+                console.log(currentFile);
+
+                const data = datas.find(item => item.file === currentFile);
+                console.log(data);
+
+                if (data) {
+                    document.querySelector('h1').textContent = data.title;
+                    const nextDiv = document.getElementById('next');
+                    data.next.forEach(item => {
+                        const link = document.createElement('a');
+                        link.href = item.file;
+                        link.textContent = item.title;
+                        nextDiv.appendChild(link);
+                        nextDiv.appendChild(document.createElement('br'));
+                    });
+
+                    const backDiv = document.getElementById('back');
+                    console.log(backDiv);
+                    console.log(data.back);
+
+                    if (data.back) {
+                        const backButton = document.createElement('button');
+                        backButton.textContent = data.back.title;
+                        backButton.onclick = () => window.location.href = data.back.file;
+                        backDiv.appendChild(backButton);
+                    }
+                }
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+    </script>
+    <div id="back"></div>
+</body>
+</html>
